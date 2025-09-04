@@ -7,7 +7,7 @@ This is a simple app I decided to make for a few reasons:
 
 ## Issues this app solves
 
-So, there are a few minor issues I think I could alleviated by the features of this app.
+So, there are a few minor issues I think could alleviated by the features of this app.
 
 ### Road Hazard Calculator 
 
