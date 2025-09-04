@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ACCToolkit">
         <activity
+            android:name=".BarcodeGenerator"
+            android:exported="false" />
+        <activity
+            android:name=".UPCCollection"
+            android:exported="false" />
+        <activity
+            android:name=".RoadHazardCalc"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
