@@ -10,19 +10,48 @@
     <string name="measuredTreadDepthText">Measured Tread Depth:</string>
     <string name="startingTreadDepthText">Starting Tread Depth:</string>
     <string name="enterCostText">Enter Current Tire Price:</string>
-    <string name="enterCostTextHint">$100</string>
+    <string name="enterCostTextHint">$150.00</string>
     <string name="calculateButton">Calculate</string>
+    <string name="resultsText">Customer Pays:</string>
 
-    <string name="enterCostError">The current tire price entered is not formatted correctly!</string>
-    <string name="measuredGTStartingError">The measured tread depth cannot be larger than the starting tread depth!</string>
+    <string name="enterCostError">The price entered is not formatted correctly!</string>
+    <string name="measuredGTStartingError">The measured depth cannot be larger than the starting depth!</string>
 
-    <string-array name="tireDepths">
+    <string-array name="measauredTireDepths">
         <item>2/32</item>
         <item>3/32</item>
         <item>4/32</item>
         <item>5/32</item>
         <item>6/32</item>
         <item>7/32</item>
+        <item>8/32</item>
+        <item>9/32</item>
+        <item>10/32</item>
+        <item>11/32</item>
+        <item>12/32</item>
+        <item>13/32</item>
+        <item>14/32</item>
+        <item>15/32</item>
+        <item>16/32</item>
+        <item>17/32</item>
+        <item>18/32</item>
+        <item>19/32</item>
+        <item>20/32</item>
+        <item>21/32</item>
+        <item>22/32</item>
+        <item>23/32</item>
+        <item>24/32</item>
+        <item>25/32</item>
+        <item>26/32</item>
+        <item>27/32</item>
+        <item>28/32</item>
+        <item>29/32</item>
+        <item>30/32</item>
+        <item>31/32</item>
+        <item>32/32</item>
+    </string-array>
+
+    <string-array name="startingTireDepths">
         <item>8/32</item>
         <item>9/32</item>
         <item>10/32</item>

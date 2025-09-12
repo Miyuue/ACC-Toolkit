@@ -1,19 +1,22 @@
 package com.miyuue.acctoolkit;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class RoadHazardCalc extends AppCompatActivity {
     private Spinner measuredTreadDepthSpinner;
     private Spinner startingTreadDepthSpinner;
     private EditText enterCostEditText;
-    private TextView resultTextView;
+    private TextView resultsTextView;
 
     private static final float[][] percentageLookUp =
     {
@@ -134,11 +137,18 @@ public class RoadHazardCalc extends AppCompatActivity {
         measuredTreadDepthSpinner = findViewById(R.id.measuredTreadDepthSpinner);
         startingTreadDepthSpinner = findViewById(R.id.startingTreadDepthSpinner);
         enterCostEditText = findViewById(R.id.enterCost);
-        resultTextView = findViewById(R.id.resultText);
+        resultsTextView = findViewById(R.id.resultsText);
     }
 
     private float lookUpPercentageToPay(int startingDepth, int measuredDepth) {
         return percentageLookUp[startingDepth - 8][measuredDepth - 2];
+    }
+
+    private void displayFormattedPrice(float price) {
+        String priceString = String.format(Locale.getDefault(), "%.2f", price);
+
+        resultsTextView.setText("$".concat(priceString));
+        resultsTextView.setVisibility(View.VISIBLE);
     }
 
     public void calculateCost(View view) {
@@ -148,8 +158,8 @@ public class RoadHazardCalc extends AppCompatActivity {
         String currentCostString = enterCostEditText.getText().toString();
 
         // This collects the numerator of the selected values as an int
-        int measuredSelection = Integer.decode(measuredSelectionString.split("/")[0]);
-        int startingSelection = Integer.decode(startingSelectionString.split("/")[0]);
+        int measuredSelection = Integer.decode(measuredSelectionString.split(Pattern.quote("/"))[0]);
+        int startingSelection = Integer.decode(startingSelectionString.split(Pattern.quote("/"))[0]);
 
         // Ensure a valid float
         float currentCost;
@@ -158,16 +168,21 @@ public class RoadHazardCalc extends AppCompatActivity {
         }
         catch(Exception e) {
             // Show error message
-            resultTextView.setTextColor(Color.RED);
-            resultTextView.setText(R.string.enterCostError);
+            Toast.makeText(RoadHazardCalc.this, R.string.enterCostError, Toast.LENGTH_LONG).show();
             return;
         }
 
-        // Current tread depth cannot be bigger than the starting tread depth
+        // Ensure a valid cost (valid: 12.34, non-valid: 12.345...)
+        if (enterCostEditText.getText().toString().split(Pattern.quote("."))[1].length() > 2) {
+            // Show error message
+            Toast.makeText(RoadHazardCalc.this, R.string.enterCostError, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Measured tread depth cannot be bigger than the starting tread depth
         if (measuredSelection > startingSelection) {
             // Show error message
-            resultTextView.setTextColor(Color.RED);
-            resultTextView.setText(R.string.measuredGTStartingError);
+            Toast.makeText(RoadHazardCalc.this, R.string.measuredGTStartingError, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -175,7 +190,6 @@ public class RoadHazardCalc extends AppCompatActivity {
         float customerCost = currentCost * lookUpPercentageToPay(startingSelection, measuredSelection);
 
         // Show results
-        resultTextView.setTextColor(Color.BLUE);
-        resultTextView.setText("Customer pays: $".concat(String.valueOf(customerCost)));
+        displayFormattedPrice(customerCost);
     }
 }
