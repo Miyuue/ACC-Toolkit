@@ -2,7 +2,7 @@
 This is a simple app I decided to make for a few reasons:
 
 1. As of right now (9/4/2025) I am four days into my new term which includes a course on mobile development, and I wanted to test the waters.
-2. I'm about the submit an application to Walmart's internship and I wanted to have something relevant to show, as well as showing I'm already helping their employee(s) (at least me) be more productive.
+2. I'm about to submit an application to Walmart's internship and I wanted to have something relevant to show, as well as showing I'm already helping their employee(s) (at least me) be more productive.
 3. There are a few minor issues at the ACC counter that could be rectified by using this app (I'll explain more below).
 
 ## Issues this app solves
