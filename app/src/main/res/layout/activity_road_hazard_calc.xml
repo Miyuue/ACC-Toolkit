@@ -5,14 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".RoadHazardCalc">
 
     <TextView
         android:id="@+id/roadHazardCalcTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/roadHazardCalcTitle"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -21,7 +25,7 @@
 
     <View
         android:id="@+id/divider"
-        android:layout_width="409dp"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="?android:attr/listDivider"
@@ -34,7 +38,7 @@
         android:id="@+id/measuredTreadDepthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="@string/measuredTreadDepthText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -43,59 +47,64 @@
 
     <Spinner
         android:id="@+id/measuredTreadDepthSpinner"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:entries="@array/tireDepths"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/measauredTireDepths"
+        android:nextFocusDown="@id/startingTreadDepthSpinner"
+        app:layout_constraintBaseline_toBaselineOf="@id/measuredTreadDepthText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintStart_toEndOf="@id/measuredTreadDepthText" />
 
     <TextView
         android:id="@+id/startingTreadDepthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="42dp"
         android:text="@string/startingTreadDepthText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/measuredTreadDepthText"
         app:layout_constraintTop_toBottomOf="@+id/measuredTreadDepthText" />
 
     <Spinner
         android:id="@+id/startingTreadDepthSpinner"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:entries="@array/tireDepths"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/startingTireDepths"
+        android:nextFocusDown="@id/enterCost"
+        app:layout_constraintBaseline_toBaselineOf="@id/startingTreadDepthText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/measuredTreadDepthSpinner" />
+        app:layout_constraintStart_toEndOf="@id/startingTreadDepthText" />
 
     <TextView
         android:id="@+id/enterCostText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="42dp"
         android:text="@string/enterCostText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/startingTreadDepthText"
         app:layout_constraintTop_toBottomOf="@+id/startingTreadDepthText" />
 
     <EditText
         android:id="@+id/enterCost"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+
         android:layout_height="48dp"
+        android:layout_margin="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/enterCostTextHint"
         android:importantForAccessibility="no"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@id/enterCostText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startingTreadDepthSpinner" />
+        app:layout_constraintStart_toEndOf="@id/enterCostText" />
 
     <Button
         android:id="@+id/calculateButton"
@@ -109,14 +118,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterCost" />
 
-    <TextView
-        android:id="@+id/resultText"
+    <View
+        android:id="@+id/divider2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="32dp"
+        android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
+
+    <TextView
+        android:id="@+id/resultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/resultsText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/holo_green_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
