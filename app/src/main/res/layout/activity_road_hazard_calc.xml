@@ -51,7 +51,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:entries="@array/measauredTireDepths"
+        android:entries="@array/measuredTireDepths"
         android:nextFocusDown="@id/startingTreadDepthSpinner"
         app:layout_constraintBaseline_toBaselineOf="@id/measuredTreadDepthText"
         app:layout_constraintEnd_toEndOf="parent"
