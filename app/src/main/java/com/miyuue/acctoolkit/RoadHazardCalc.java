@@ -18,117 +18,6 @@ public class RoadHazardCalc extends AppCompatActivity {
     private EditText enterCostEditText;
     private TextView resultsTextView;
 
-    private static final float[][] percentageLookUp =
-    {
-            // This look up came from an official chart on my ACC coach's wall
-
-            { // OT: 8/32
-                1.0f, // TR: 2/32
-                0.83f, // TR: 3/32
-                0.67f, // TR: 4/32
-                0.5f, // TR: 5/32
-                0.33f, // TR: 6/32
-                0.17f, // TR: 7/32
-                0.0f // TR: 8/32
-            },
-
-            { // OT: 9/32
-
-            },
-
-            { // OT: 10/32
-
-            },
-
-            { // OT: 11/32
-
-            },
-
-            { // OT: 12/32
-
-            },
-
-            { // OT: 13/32
-
-            },
-
-            { // OT: 14/32
-
-            },
-
-            { // OT: 15/32
-
-            },
-
-            { // OT: 16/32
-
-            },
-
-            { // OT: 17/32
-
-            },
-
-            { // OT: 18/32
-
-            },
-
-            { // OT: 19/32
-
-            },
-
-            { // OT: 20/32
-
-            },
-
-            { // OT: 21/32
-
-            },
-
-            { // OT: 22/32
-
-            },
-
-            { // OT: 23/32
-
-            },
-
-            { // OT: 24/32
-
-            },
-
-            { // OT: 25/32
-
-            },
-
-            { // OT: 26/32
-
-            },
-
-            { // OT: 27/32
-
-            },
-
-            { // OT: 28/32
-
-            },
-
-            { // OT: 29/32
-
-            },
-
-            { // OT: 30/32
-
-            },
-
-            { // OT: 31/32
-
-            },
-
-            { // OT: 32/32
-
-            },
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,8 +29,14 @@ public class RoadHazardCalc extends AppCompatActivity {
         resultsTextView = findViewById(R.id.resultsText);
     }
 
-    private float lookUpPercentageToPay(int startingDepth, int measuredDepth) {
-        return percentageLookUp[startingDepth - 8][measuredDepth - 2];
+    private float calculatePercentageToPay(int originalTread, int remainingTread) {
+        if (remainingTread <= 2) return 1;
+
+        if (originalTread == remainingTread) return 0;
+
+        // Formula to calculate wear percentage (what percentage the customer pays)
+        // (This was derived from a chart hung up in my manager's office)
+        return (float) (originalTread - remainingTread) / (originalTread - 2);
     }
 
     private void displayFormattedPrice(float price) {
@@ -187,7 +82,8 @@ public class RoadHazardCalc extends AppCompatActivity {
         }
 
         // Calculate cost
-        float customerCost = currentCost * lookUpPercentageToPay(startingSelection, measuredSelection);
+        float percentage = calculatePercentageToPay(startingSelection, measuredSelection);
+        float customerCost = currentCost * percentage;
 
         // Show results
         displayFormattedPrice(customerCost);
