@@ -51,33 +51,33 @@
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:entries="@array/measuredTireDepths"
-        android:nextFocusDown="@id/startingTreadDepthSpinner"
+        android:entries="@array/measuredTreadDepths"
+        android:nextFocusDown="@id/originalTreadDepthSpinner"
         app:layout_constraintBaseline_toBaselineOf="@id/measuredTreadDepthText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/measuredTreadDepthText" />
 
     <TextView
-        android:id="@+id/startingTreadDepthText"
+        android:id="@+id/originalTreadDepthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:text="@string/startingTreadDepthText"
+        android:text="@string/originalTreadDepthText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="@id/measuredTreadDepthText"
         app:layout_constraintTop_toBottomOf="@+id/measuredTreadDepthText" />
 
     <Spinner
-        android:id="@+id/startingTreadDepthSpinner"
+        android:id="@+id/originalTreadDepthSpinner"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:entries="@array/startingTireDepths"
+        android:entries="@array/originalTreadDepths"
         android:nextFocusDown="@id/enterCost"
-        app:layout_constraintBaseline_toBaselineOf="@id/startingTreadDepthText"
+        app:layout_constraintBaseline_toBaselineOf="@id/originalTreadDepthText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/startingTreadDepthText" />
+        app:layout_constraintStart_toEndOf="@id/originalTreadDepthText" />
 
     <TextView
         android:id="@+id/enterCostText"
@@ -86,8 +86,8 @@
         android:layout_marginTop="42dp"
         android:text="@string/enterCostText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintEnd_toEndOf="@id/startingTreadDepthText"
-        app:layout_constraintTop_toBottomOf="@+id/startingTreadDepthText" />
+        app:layout_constraintEnd_toEndOf="@id/originalTreadDepthText"
+        app:layout_constraintTop_toBottomOf="@+id/originalTreadDepthText" />
 
     <EditText
         android:id="@+id/enterCost"

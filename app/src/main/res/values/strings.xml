@@ -8,16 +8,16 @@
     <!-- Road Hazard Calc Activity -->
     <string name="roadHazardCalcTitle">Road Hazard Calculator</string>
     <string name="measuredTreadDepthText">Measured Tread Depth:</string>
-    <string name="startingTreadDepthText">Starting Tread Depth:</string>
+    <string name="originalTreadDepthText">Original Tread Depth:</string>
     <string name="enterCostText">Enter Current Tire Price:</string>
     <string name="enterCostTextHint">$150.00</string>
     <string name="calculateButton">Calculate</string>
     <string name="resultsText">Customer Pays:</string>
 
     <string name="enterCostError">The price entered is not formatted correctly!</string>
-    <string name="measuredGTStartingError">The measured depth cannot be larger than the starting depth!</string>
+    <string name="measuredGTOriginalError">The measured depth cannot be larger than the original depth!</string>
 
-    <string-array name="measuredTireDepths">
+    <string-array name="measuredTreadDepths">
         <item>2/32</item>
         <item>3/32</item>
         <item>4/32</item>
@@ -51,7 +51,7 @@
         <item>32/32</item>
     </string-array>
 
-    <string-array name="startingTireDepths">
+    <string-array name="originalTreadDepths">
         <item>8/32</item>
         <item>9/32</item>
         <item>10/32</item>

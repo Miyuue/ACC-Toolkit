@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class RoadHazardCalc extends AppCompatActivity {
     private Spinner measuredTreadDepthSpinner;
-    private Spinner startingTreadDepthSpinner;
+    private Spinner originalTreadDepthSpinner;
     private EditText enterCostEditText;
     private TextView resultsTextView;
 
@@ -24,7 +24,7 @@ public class RoadHazardCalc extends AppCompatActivity {
         setContentView(R.layout.activity_road_hazard_calc);
 
         measuredTreadDepthSpinner = findViewById(R.id.measuredTreadDepthSpinner);
-        startingTreadDepthSpinner = findViewById(R.id.startingTreadDepthSpinner);
+        originalTreadDepthSpinner = findViewById(R.id.originalTreadDepthSpinner);
         enterCostEditText = findViewById(R.id.enterCost);
         resultsTextView = findViewById(R.id.resultsText);
     }
@@ -36,7 +36,7 @@ public class RoadHazardCalc extends AppCompatActivity {
 
         // Formula to calculate wear percentage (what percentage the customer pays)
         // (This was derived from a chart hung up in my manager's office)
-        return (float) (originalTread - remainingTread) / (originalTread - 2);
+        return (float) (originalTread - remainingTread) / (originalTread - 2); // (Tread Used) / (Usable Tread)
     }
 
     private void displayFormattedPrice(float price) {
@@ -49,12 +49,12 @@ public class RoadHazardCalc extends AppCompatActivity {
     public void calculateCost(View view) {
         // Get input values
         String measuredSelectionString = measuredTreadDepthSpinner.getSelectedItem().toString();
-        String startingSelectionString = startingTreadDepthSpinner.getSelectedItem().toString();
+        String originalSelectionString = originalTreadDepthSpinner.getSelectedItem().toString();
         String currentCostString = enterCostEditText.getText().toString();
 
         // This collects the numerator of the selected values as an int
         int measuredSelection = Integer.decode(measuredSelectionString.split(Pattern.quote("/"))[0]);
-        int startingSelection = Integer.decode(startingSelectionString.split(Pattern.quote("/"))[0]);
+        int originalSelection = Integer.decode(originalSelectionString.split(Pattern.quote("/"))[0]);
 
         // Ensure a valid float
         float currentCost;
@@ -75,14 +75,14 @@ public class RoadHazardCalc extends AppCompatActivity {
         }
 
         // Measured tread depth cannot be bigger than the starting tread depth
-        if (measuredSelection > startingSelection) {
+        if (measuredSelection > originalSelection) {
             // Show error message
-            Toast.makeText(RoadHazardCalc.this, R.string.measuredGTStartingError, Toast.LENGTH_LONG).show();
+            Toast.makeText(RoadHazardCalc.this, R.string.measuredGTOriginalError, Toast.LENGTH_LONG).show();
             return;
         }
 
         // Calculate cost
-        float percentage = calculatePercentageToPay(startingSelection, measuredSelection);
+        float percentage = calculatePercentageToPay(originalSelection, measuredSelection);
         float customerCost = currentCost * percentage;
 
         // Show results
