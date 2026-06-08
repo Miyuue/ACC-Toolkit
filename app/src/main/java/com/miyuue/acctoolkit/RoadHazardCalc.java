@@ -67,13 +67,6 @@ public class RoadHazardCalc extends AppCompatActivity {
             return;
         }
 
-        // Ensure a valid cost (valid: 12.34, non-valid: 12.345...)
-        if (enterCostEditText.getText().toString().split(Pattern.quote("."))[1].length() > 2) {
-            // Show error message
-            Toast.makeText(RoadHazardCalc.this, R.string.enterCostError, Toast.LENGTH_LONG).show();
-            return;
-        }
-
         // Measured tread depth cannot be bigger than the starting tread depth
         if (measuredSelection > originalSelection) {
             // Show error message
