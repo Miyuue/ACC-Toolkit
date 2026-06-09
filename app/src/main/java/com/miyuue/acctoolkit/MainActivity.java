@@ -13,11 +13,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // Starts UPC Collection activity
     public void goToUPCCollection(View view) {
         Intent intent = new Intent(this, UPCCollection.class);
         startActivity(intent);
     }
 
+    // Starts RoadHazardCalc activity
     public void goToRoadHazardCalc(View view) {
         Intent intent = new Intent(this, RoadHazardCalc.class);
         startActivity(intent);
