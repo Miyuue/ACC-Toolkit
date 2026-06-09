@@ -71,7 +71,7 @@ public class UPCDatabase extends SQLiteOpenHelper {
         ArrayList<UPC> upcList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                UPC upc = new UPC(cursor.getString(2), cursor.getLong(1));
+                UPC upc = new UPC(cursor.getString(1), cursor.getLong(0));
                 upcList.add(upc);
             } while (cursor.moveToNext());
         }

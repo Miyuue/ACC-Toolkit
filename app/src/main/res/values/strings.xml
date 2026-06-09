@@ -5,6 +5,9 @@
     <string name="button1">UPC Collection</string>
     <string name="button2">Road Hazard Calculator</string>
 
+    <!-- UPC Collection Activity -->
+    <string name="upcCollectionTitle">UPC Collection</string>
+
     <!-- Road Hazard Calc Activity -->
     <string name="roadHazardCalcTitle">Road Hazard Calculator</string>
     <string name="measuredTreadDepthText">Measured Tread Depth:</string>
