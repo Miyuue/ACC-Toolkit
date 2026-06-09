@@ -68,16 +68,16 @@ public class UPCDatabase extends SQLiteOpenHelper {
         String query = "select * from " + UPCTable.TABLE;
         Cursor cursor = db.rawQuery(query, null);
 
-        ArrayList<UPC> upcs = new ArrayList<>();
+        ArrayList<UPC> upcList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 UPC upc = new UPC(cursor.getString(2), cursor.getLong(1));
-                upcs.add(upc);
+                upcList.add(upc);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         db.close();
-        return upcs;
+        return upcList;
     }
 }
