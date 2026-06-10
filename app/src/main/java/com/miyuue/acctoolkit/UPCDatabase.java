@@ -25,9 +25,11 @@ public class UPCDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " +
                 UPCTable.TABLE + " (" +
-                UPCTable.COL_UPC + " integer primary key, " +
+                UPCTable.COL_UPC + " text primary key, " +
                 UPCTable.COL_NAME + " text) "
                 );
+
+        initEntries(db); // Adds some entries to the db
     }
 
     // Is called when the DB file is an older version than what was requested.
@@ -38,17 +40,21 @@ public class UPCDatabase extends SQLiteOpenHelper {
     }
 
     // Adds an entry to the UPC table
-    public boolean addUPC(UPC upc) {
-        SQLiteDatabase db = getWritableDatabase();
-
+    private boolean addUPC(SQLiteDatabase db, UPC upc) {
         ContentValues values = new ContentValues();
         values.put(UPCTable.COL_UPC, upc.getUPC());
         values.put(UPCTable.COL_NAME, upc.getName());
 
         long newEntryID = db.insert(UPCTable.TABLE, null, values);
 
-        db.close();
         return (newEntryID != -1);
+    }
+
+    public boolean addUPC(UPC upc) {
+        SQLiteDatabase db = getWritableDatabase();
+        boolean success = addUPC(db, upc);
+        db.close();
+        return success;
     }
 
     // Removes an entry in the UPC table (if it exists)
@@ -56,12 +62,13 @@ public class UPCDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         int rowsDeleted = db.delete(UPCTable.TABLE, UPCTable.COL_UPC + " = ?",
-                new String[] { Long.toString(upc.getUPC()) });
+                new String[] { upc.getUPC() });
 
         db.close();
         return (rowsDeleted > 0);
     }
 
+    // Returns all UPCs in the database
     public ArrayList<UPC> getAllUPCs() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -71,7 +78,7 @@ public class UPCDatabase extends SQLiteOpenHelper {
         ArrayList<UPC> upcList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                UPC upc = new UPC(cursor.getString(1), cursor.getLong(0));
+                UPC upc = new UPC(cursor.getString(1), cursor.getString(0));
                 upcList.add(upc);
             } while (cursor.moveToNext());
         }
@@ -79,5 +86,17 @@ public class UPCDatabase extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return upcList;
+    }
+
+    // Adds some entries to the db
+    private void initEntries(SQLiteDatabase db) {
+        UPC upc = new UPC("TPMS Sensor Install", "681131150361");
+        addUPC(db, upc);
+
+        upc = new UPC("Valve Stem Installation", "681131150378");
+        addUPC(db, upc);
+
+        upc = new UPC("Tire Recycle Fee", "681131101790");
+        addUPC(db, upc);
     }
 }

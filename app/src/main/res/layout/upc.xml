@@ -14,7 +14,7 @@
         android:layout_marginEnd="8dp"
         android:text="name"
         android:textAlignment="textStart"
-        android:textSize="34sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/displayBarcodeBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,14 +23,14 @@
         android:id="@+id/displayBarcodeBtn"
         android:layout_width="65sp"
         android:layout_height="50sp"
-        android:layout_marginTop="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
         android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleX="0.8"
+        android:scaleY="0.7"
+        android:translationY="-5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/barcode_icon" />
 
     <View
         android:id="@+id/divider4"

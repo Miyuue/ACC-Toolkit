@@ -1,16 +1,15 @@
 package com.miyuue.acctoolkit;
 
 public class UPC {
-    private String name;
-    private long upc;
+    private String name, upc;
 
-    public UPC(String name, long upc) {
+    public UPC(String name, String upc) {
         this.name = name;
         this.upc = upc;
     }
 
     public UPC() {
-        this("default", 0);
+        this("default", "0");
     }
 
     public String getName() {
@@ -21,11 +20,11 @@ public class UPC {
         this.name = name;
     }
 
-    public long getUPC() {
+    public String getUPC() {
         return this.upc;
     }
 
-    public void setUPC(long upc) {
+    public void setUPC(String upc) {
         this.upc = upc;
     }
 }

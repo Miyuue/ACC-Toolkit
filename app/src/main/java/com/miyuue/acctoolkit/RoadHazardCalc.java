@@ -23,12 +23,14 @@ public class RoadHazardCalc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_road_hazard_calc);
 
+        // Set views
         measuredTreadDepthSpinner = findViewById(R.id.measuredTreadDepthSpinner);
         originalTreadDepthSpinner = findViewById(R.id.originalTreadDepthSpinner);
         enterCostEditText = findViewById(R.id.enterCost);
         resultsTextView = findViewById(R.id.resultsText);
     }
 
+    // Returns the percentage the customer will pay based on tread depth
     private float calculatePercentageToPay(int originalTread, int remainingTread) {
         if (remainingTread <= 2) return 1;
 
@@ -39,13 +41,18 @@ public class RoadHazardCalc extends AppCompatActivity {
         return (float) (originalTread - remainingTread) / (originalTread - 2); // (Tread Used) / (Usable Tread)
     }
 
+    // Shows the price on screen
     private void displayFormattedPrice(float price) {
+        // Formats price to only have a max of two decimal places
         String priceString = String.format(Locale.getDefault(), "%.2f", price);
 
+        // Display the price with a "$" in front.
         resultsTextView.setText("$".concat(priceString));
         resultsTextView.setVisibility(View.VISIBLE);
     }
 
+    // This is the onClick method for the Calculate button.
+    // It gets the inputs and verifies they are good, calculates the cost and then displays it.
     public void calculateCost(View view) {
         // Get input values
         String measuredSelectionString = measuredTreadDepthSpinner.getSelectedItem().toString();

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/upcNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/minTouchTargetSize"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/upcCodeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/minTouchTargetSize"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="UPC Code"
+        android:inputType="number"
+        android:maxLength="12" />
+
+    <Button
+        android:id="@+id/submitNewUPCBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Submit" />
+</LinearLayout>

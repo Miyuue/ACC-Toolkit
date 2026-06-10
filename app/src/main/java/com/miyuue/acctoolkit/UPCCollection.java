@@ -2,6 +2,7 @@ package com.miyuue.acctoolkit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,11 +34,30 @@ public class UPCCollection extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UPCAdapter(upcList, this);
         recyclerView.setAdapter(adapter);
-
-        UPC upc = new UPC();
-        db.addUPC(upc);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshRecyclerView();
+    }
+
+    public void refreshRecyclerView() {
+        ArrayList<UPC> upcList = db.getAllUPCs();
+        adapter = new UPCAdapter(upcList, this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    // This is the onClick method for the floating add button
+    // Opens the bottom sheet for adding a new UPC to the db
+    public void openAddUPCSheet(View view) {
+        AddUPCBottomSheet sheet = new AddUPCBottomSheet(this);
+        sheet.show(getSupportFragmentManager(), "AddUPCBottomSheet");
+    }
+
+    // This is the onClick method for when the displayBarcode button on any of the UPCs is clicked
+    // Opens up the Barcode Display activity
+    // Passes the upc to the activity
     public void openBarcodeDisplay(UPC upc) {
         Intent intent = new Intent(this, BarcodeDisplay.class);
         intent.putExtra("upc", upc.getUPC());
